@@ -1,0 +1,8 @@
+.input100{
+    outline: none;
+    box-shadow: none;
+}
+.input100:focus{
+    box-shadow: none;
+    border-color: #ffc107;
+}

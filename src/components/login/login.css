@@ -1,0 +1,53 @@
+.login{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.login .login-form{
+    width: 30rem;
+}
+.login .login-form p{
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+}
+.login .login-form input{
+    background: transparent;
+    width: 15rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+.social-icon h6{
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 700;
+}
+.icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fa-google{
+    color: #0F9D58;
+}
+.fa-facebook{
+    color: #4285F4;
+}
+.fa-instagram{
+    color: #DB4437;
+}
+.fa-google:hover{
+    transform: scale(1.2);
+    transition: .3s ease-in-out;
+}
+.fa-facebook:hover{
+    transform: scale(1.2);
+    transition: .3s ease-in-out;
+}
+.fa-instagram:hover{
+    transform: scale(1.2);
+    transition: .3s ease-in-out;
+}

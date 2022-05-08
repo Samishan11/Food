@@ -1,0 +1,68 @@
+.text p{
+    font-size: 3.5rem;
+    font-weight: 700;
+}
+.sub-text p{
+    font-size: 1rem;
+    color:darkgray;
+}
+.search .search-food{
+    outline: none;
+    border: none;    
+    background-color: aliceblue;
+    width: 25rem;
+}
+.search .search-food:focus{
+    outline: none;
+    border: none;
+    border: none
+}
+.search button{
+    width: 5rem;
+    font-size: .9rem;
+    font-weight: 600;
+}
+.item{
+    position: relative;
+}
+.item-img{
+    border-radius: 30px;
+}
+.catagory{
+    position: absolute;
+    bottom: 10%;
+    width: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 22px;
+}
+.round{
+    height:30px;
+    width: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fa-arrow-right{
+    font-size: 1rem;
+    color: white;
+}
+.item:hover .round{
+   background-color: black !important;
+}
+.item:hover{
+    transform: translateY(-10px);
+    transition: .3s ease-in-out;
+}
+.search-div{
+    position: relative;
+}
+.searchitem{
+    position: absolute;
+    top: 105%;
+    background-color: aliceblue;
+    height: auto;
+    width: 100%;
+}

@@ -1,0 +1,15 @@
+.singlepage{
+    margin-top: 100px;
+}
+.f-name{
+    display: flex;
+    align-items: center;
+}
+.sideline{
+    width: 2.5rem;
+    height: .09rem;
+    background-color: black;
+    display: block
+}.foodd-img{
+    width: 100%;
+}

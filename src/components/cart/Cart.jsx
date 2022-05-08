@@ -1,0 +1,161 @@
+import React, { useContext, useState, useEffect } from 'react'
+import myKey from "../khalti/khaltikeys";
+import './cart.css'
+import { CartContext } from '../Context/CardContext'
+import axios from 'axios'
+import KhaltiCheckout from "khalti-checkout-web";
+import config from "../khalti/Khalticonfig";
+const Cart = () => {
+    // console.log(config());
+    const [cart] = useContext(CartContext);
+    const [total, setTotal] = useState(0);
+    useEffect(() => {
+        setTotal(cart.reduce((acc, cur) => acc + Number(cur.food.price * cur.quantity), 0))
+    }, [cart])
+
+    // increace cart quantity
+    const updatecart = (cartid, quantity) => {
+        axios.put(`updatecart/${cartid}`, {
+            quantity
+        }).then(data => {
+            if (data.data.Cart._id === cartid) {
+
+            } else {
+                console.log('lamo');
+            }
+        }).catch(e => {
+            console.log(e);
+        })
+    }
+
+    // remove cart
+    const removecart = (cartid) => {
+        try {
+            axios.delete(`removecart/${cartid}`)
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // jsonwebtoken
+    function parseJwt(token) {
+        if (!token) { return; }
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(window.atob(base64));
+    }
+    // get user form the token
+    const token_data = localStorage.getItem("token")
+    const token = parseJwt(token_data)
+    const user = token?.id
+
+
+    // order
+    const order = (e) => {
+        e.preventDefault();
+        axios.post('order', {
+            user: user,
+            total_price: total,
+            foods: cart
+        }).then(cart => {
+            console.log(cart);
+        }).catch(e => {
+            console.log(e);
+        })
+    }
+    // khalti payment integration
+    let config = {
+        publicKey: myKey.publicTestKey,
+        productIdentity:'12345',
+        productName: 'foods',
+        productUrl: "http://localhost:3000",
+        eventHandler: {
+            onSuccess(payload) {
+                console.log(payload);
+                    axios.post('order', {
+                        user: user,
+                        total_price: total,
+                        foods: cart,
+                        payment: true
+                    }).then(cart => {
+                        console.log(cart);
+                    }).catch(e => {
+                        console.log(e);
+                    })
+            },
+            onError(error) {
+                console.log(error);
+            },
+            onClose() {
+                console.log("widget is closing");
+            },
+        },
+        paymentPreference: [
+            "KHALTI",
+            "EBANKING",
+            "MOBILE_BANKING",
+            "CONNECT_IPS",
+            "SCT",
+        ],
+    };
+    let checkout = new KhaltiCheckout(config);
+
+    return (
+        <>
+            <div className="container cart-food">
+                <div className="carts">
+                    <table className="table border">
+                        <thead>
+                            <tr>
+                                <th style={{ fontSize: '1rem' }} scope="col">Food</th>
+                                <th style={{ fontSize: '1rem' }} scope="col">Quantity</th>
+                                <th style={{ fontSize: '1rem' }} scope="col">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                cart.map((cart, index) => {
+                                    return (
+                                        <tr key={index + 1}>
+                                            <td>
+                                                <img src={`http://localhost:5000/${cart.food.image}`} width={80} alt="" />
+                                                <span style={{ fontSize: '1rem' }} className='mx-3'>{cart.food.name}</span>
+                                            </td>
+                                            <td className='d-flex border-none'>
+                                                {
+                                                    cart.quantity === 1 ?
+                                                        <button disabled onClick={updatecart.bind(this, cart._id, cart.quantity - 1)} className=' bg-secondary px-3 fas fa-minus'></button> :
+                                                        <button onClick={updatecart.bind(this, cart._id, cart.quantity - 1)} className='fas bg-warning px-3  fa-minus'></button>
+                                                }
+                                                <p className='px-5 mx-2 fw-bold' style={{ fontSize: '1rem', background: 'lightgray' }}>{cart?.quantity}</p>
+                                                <button onClick={updatecart.bind(this, cart._id, cart.quantity + 1)} className='fas bg-warning px-3 fa-plus'></button>
+                                            </td>
+                                            <td><p style={{ fontSize: '1rem' }}>Rs. {cart.food.price * cart?.quantity}</p></td>
+                                            <td>
+                                                <i onClick={removecart.bind(this, cart._id)} className='fas h6 text-danger fa-times'></i>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                    <div className="cart-total-cost text-right">
+                        <p style={{ fontSize: '1rem' }} className='fw-bold'>Total: <span style={{ fontSize: '1rem' }}>{total}</span></p>
+                    </div>
+                    {/* <form > */}
+                    <div className="checkout-btn d-flex  justify-content-end my-5">
+                        {/* <Link to='/' style={{ fontSize: '.7rem' }} className='bg-warning  fa fa-arrow-left px-2 py-3'> Continue Shopping</Link> */}
+                        <div className="btnss  d-flex flex-column">
+                            <button onClick={order} type='submit' style={{ fontSize: '.7rem' }} className='bg-warning fw-bold py-2 text-dark px-3'>Checkout</button>
+                            <button onClick={()=> checkout.show({amount: 10*100})} type='submit' style={{ fontSize: '.7rem' }} className='bg-warning my-2 py-2 fw-bold text-dark px-3'>Khalti</button>
+                        </div>
+                    </div>
+                    {/* </form> */}
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default Cart
