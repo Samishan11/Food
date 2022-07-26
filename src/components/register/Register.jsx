@@ -15,6 +15,7 @@ const Register = () => {
                 email,
                 password
             })
+            toast.error('oops!.. something went wrong', {position:toast.POSITION.TOP_RIGHT})  
             console.log(responce.data.success);
             if (responce.data.success === 'true') {
                 navigation('/login')
@@ -22,6 +23,7 @@ const Register = () => {
                 console.log('user already exist');
             }
         } catch (error) {
+            toast.error('oops!.. something went wrong', {position:toast.POSITION.TOP_RIGHT})  
             console.log(error);
         }
     }

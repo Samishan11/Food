@@ -19,6 +19,8 @@ import Chat from './components/chat/Chat';
 import Pagenotfound from './components/pagenotfound/Pagenotfound';
 import Footer from './components/footer/Footer';
 import Searchfood from './components/searching/Searchfood';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function App() {
   function parseJwt(token) {
     if (!token) { return; }
@@ -56,6 +58,7 @@ function App() {
           <Route path='*' element={<Pagenotfound></Pagenotfound>}></Route>
         </Routes>
         <Footer></Footer>
+        <ToastContainer className="mt-5" />
       </Router>
     </Foodprovider>
   );

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import './login.css'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { toast } from 'react-toastify'
+
 const Login = () => {
     const navigation = useNavigate()
     const [email, setEmail] = useState('');
@@ -14,6 +16,7 @@ const Login = () => {
                 email,
                 password
             })
+            toast.error('oops!.. something went wrong', {position:toast.POSITION.TOP_RIGHT})  
             if (responce.data.token && responce.data.verified === false) {
                 navigation('/otp-verification', { state: { email: email } })
             } else if (responce.data.verified && responce.data.role === 0 ) {
@@ -27,6 +30,7 @@ const Login = () => {
                 console.log('email or password not match');
             }
         } catch (error) {
+            toast.error('oops!.. something went wrong', {position:toast.POSITION.TOP_RIGHT})  
             console.log(error);
         }
     }
