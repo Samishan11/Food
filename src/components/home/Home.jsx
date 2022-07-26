@@ -5,20 +5,19 @@ import pizza from '../images/food/pizza.jpg'
 import chicken from '../images/food/chicken.jpg'
 import Food from '../food/Food'
 import { FoodContext } from '../Context/FoodContext'
-import { Link  } from 'react-router-dom'
+import { Link, useNavigate  } from 'react-router-dom'
 const Home = () => {
+    let navigate = useNavigate()
     const [food] = React.useContext(FoodContext);
-    const [searchTerm, setSearchTerm] = React.useState("");
-    const [searchResults, setSearchResults] = React.useState([]);
+    const [search, setSearchTerm] = React.useState("");
     const handleChange = event => {
         setSearchTerm(event.target.value);
     };
-    React.useEffect(() => {
-        const results = food.filter(food =>
-            food.name.toLowerCase().includes(searchTerm)
-        );
-        setSearchResults(results);
-    }, [searchTerm]);
+
+    const searchFood = () =>{
+        navigate('/search/'+search)
+    }
+    
     return (
         <>
             <div className="container main">
@@ -36,24 +35,9 @@ const Home = () => {
                             </div>
                             <form className='search-div'>
                                 <div className="search mx-5 d-flex my-5">
-                                    <input value={searchTerm} onChange={handleChange} placeholder='search food' className='search-food' type="text" />
-                                    <button className='bg-warning'>Search</button>
+                                    <input value={search} onChange={handleChange} placeholder='search food' className='search-food' type="text" />
+                                    <button className='bg-warning' type='button' onClick={searchFood}>Search</button>
                                 </div>
-                                {/* <div className="searchitem mx-5">
-                                    {
-                                        searchResults.length >=1 ?
-                                            searchResults.map(item => (
-                                                <Link to={`/${item._id}`}>
-                                                <div className="d-flex justify-content-around my-3 mx-3">
-                                                    <img src={`http://localhost:5000/${item.image}`} width={60} alt="" />
-                                                    <p className='h6 my-auto'>{item.name}</p>
-                                                    <p className='h6 my-auto'>{item.price}</p>
-                                                </div>
-                                                </Link>
-                                            )
-                                            )
-                                            : null}
-                                </div> */}
                             </form>
                         </div>
                         <div className="col-12 col-md-6">

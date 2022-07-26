@@ -1,43 +1,45 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import myKey from "../khalti/khaltikeys";
 import './cart.css'
-import { CartContext } from '../Context/CardContext'
 import axios from 'axios'
 import KhaltiCheckout from "khalti-checkout-web";
-import config from "../khalti/Khalticonfig";
+import useCartStore from '../../zustand/store';
+import { Link } from 'react-router-dom';
+import emptycartimage from '../../images/emptycart.png'
 const Cart = () => {
-    // console.log(config());
-    const [cart] = useContext(CartContext);
+    let carts = useCartStore()
+    useEffect(() => {
+        carts.getCarts()
+    }, [])
+
+    // get cart total
     const [total, setTotal] = useState(0);
     useEffect(() => {
-        setTotal(cart.reduce((acc, cur) => acc + Number(cur.food.price * cur.quantity), 0))
-    }, [cart])
+        setTotal(carts.carts.reduce((acc, cur) => acc + Number(cur.price * cur.quantity), 0))
+    }, [carts])
 
-    // increace cart quantity
-    const updatecart = (cartid, quantity) => {
-        axios.put(`updatecart/${cartid}`, {
+    // update cart
+    const updatecart = (data, quantity) => {
+        carts.updateCart(data, quantity)
+        axios.put(`/updatecart/${data._id}`, {
             quantity
         }).then(data => {
-            if (data.data.Cart._id === cartid) {
-
-            } else {
-                console.log('lamo');
-            }
+            console.log(data);
         }).catch(e => {
             console.log(e);
         })
     }
-
     // remove cart
-    const removecart = (cartid) => {
-        try {
-            axios.delete(`removecart/${cartid}`)
-        } catch (error) {
-            console.log(error);
-        }
+    const removecart = (id) => {
+        carts.removeCart(id)
+        axios.delete(`/removecart/${id}`, {
+        }).then(data => {
+            // console.log(data);
+        }).catch(e => {
+            console.log(e);
+        })
     }
-
-    // jsonwebtoken
+    // jsonwebtoken parse 
     function parseJwt(token) {
         if (!token) { return; }
         const base64Url = token.split('.')[1];
@@ -47,7 +49,7 @@ const Cart = () => {
     // get user form the token
     const token_data = localStorage.getItem("token")
     const token = parseJwt(token_data)
-    const user = token?.id
+    const user = token?._id
 
 
     // order
@@ -56,9 +58,11 @@ const Cart = () => {
         axios.post('order', {
             user: user,
             total_price: total,
-            foods: cart
+            foods: carts.carts
         }).then(cart => {
-            console.log(cart);
+            carts.addOrder(carts.carts)
+            console.log(carts);
+            // console.log(cart);
         }).catch(e => {
             console.log(e);
         })
@@ -66,22 +70,24 @@ const Cart = () => {
     // khalti payment integration
     let config = {
         publicKey: myKey.publicTestKey,
-        productIdentity:'12345',
+        productIdentity: '12345',
         productName: 'foods',
         productUrl: "http://localhost:3000",
         eventHandler: {
             onSuccess(payload) {
                 console.log(payload);
-                    axios.post('order', {
-                        user: user,
-                        total_price: total,
-                        foods: cart,
-                        payment: true
-                    }).then(cart => {
-                        console.log(cart);
-                    }).catch(e => {
-                        console.log(e);
-                    })
+                carts.addOrder(carts.carts)
+                console.log(carts);
+                axios.post('order', {
+                    user: user,
+                    total_price: total,
+                    foods: carts.carts,
+                    payment: true
+                }).then(cart => {
+                    console.log(cart);
+                }).catch(e => {
+                    console.log(e);
+                })
             },
             onError(error) {
                 console.log(error);
@@ -103,6 +109,10 @@ const Cart = () => {
     return (
         <>
             <div className="container cart-food">
+                {
+                    carts.carts.length < 1 ?
+                    <img src={emptycartimage} alt="" />
+                    :
                 <div className="carts">
                     <table className="table border">
                         <thead>
@@ -114,23 +124,23 @@ const Cart = () => {
                         </thead>
                         <tbody>
                             {
-                                cart.map((cart, index) => {
+                                carts.carts?.map((cart, index) => {
                                     return (
                                         <tr key={index + 1}>
                                             <td>
-                                                <img src={`http://localhost:5000/${cart.food.image}`} width={80} alt="" />
-                                                <span style={{ fontSize: '1rem' }} className='mx-3'>{cart.food.name}</span>
+                                                <img src={`http://localhost:5000/${cart.image}`} width={80} alt="" />
+                                                <span style={{ fontSize: '1rem' }} className='mx-3'>{cart.name}</span>
                                             </td>
                                             <td className='d-flex border-none'>
                                                 {
                                                     cart.quantity === 1 ?
-                                                        <button disabled onClick={updatecart.bind(this, cart._id, cart.quantity - 1)} className=' bg-secondary px-3 fas fa-minus'></button> :
-                                                        <button onClick={updatecart.bind(this, cart._id, cart.quantity - 1)} className='fas bg-warning px-3  fa-minus'></button>
+                                                        <button disabled onClick={updatecart.bind(this, cart, cart.quantity - 1)} className=' bg-secondary px-3 fas fa-minus'></button> :
+                                                        <button onClick={updatecart.bind(this, cart, cart.quantity - 1)} className='fas bg-warning px-3  fa-minus'></button>
                                                 }
                                                 <p className='px-5 mx-2 fw-bold' style={{ fontSize: '1rem', background: 'lightgray' }}>{cart?.quantity}</p>
-                                                <button onClick={updatecart.bind(this, cart._id, cart.quantity + 1)} className='fas bg-warning px-3 fa-plus'></button>
+                                                <button onClick={updatecart.bind(this, cart, cart.quantity + 1)} className='fas bg-warning px-3 fa-plus'></button>
                                             </td>
-                                            <td><p style={{ fontSize: '1rem' }}>Rs. {cart.food.price * cart?.quantity}</p></td>
+                                            <td><p style={{ fontSize: '1rem' }}>Rs. {cart.price * cart?.quantity}</p></td>
                                             <td>
                                                 <i onClick={removecart.bind(this, cart._id)} className='fas h6 text-danger fa-times'></i>
                                             </td>
@@ -144,15 +154,16 @@ const Cart = () => {
                         <p style={{ fontSize: '1rem' }} className='fw-bold'>Total: <span style={{ fontSize: '1rem' }}>{total}</span></p>
                     </div>
                     {/* <form > */}
-                    <div className="checkout-btn d-flex  justify-content-end my-5">
-                        {/* <Link to='/' style={{ fontSize: '.7rem' }} className='bg-warning  fa fa-arrow-left px-2 py-3'> Continue Shopping</Link> */}
-                        <div className="btnss  d-flex flex-column">
+                    <div className="checkout-btn d-flex  justify-content-between my-5">
+                        <Link to='/' style={{ fontSize: '.7rem' }} className='bg-warning my-auto fa fa-arrow-left px-2 py-3'> Continue Shopping</Link>
+                        <div className="btnss d-flex flex-column">
                             <button onClick={order} type='submit' style={{ fontSize: '.7rem' }} className='bg-warning fw-bold py-2 text-dark px-3'>Checkout</button>
-                            <button onClick={()=> checkout.show({amount: 10*100})} type='submit' style={{ fontSize: '.7rem' }} className='bg-warning my-2 py-2 fw-bold text-dark px-3'>Khalti</button>
+                            <button onClick={() => checkout.show({ amount: 10 * 100 })} type='submit' style={{ fontSize: '.7rem' }} className='bg-warning my-2 py-2 fw-bold text-dark px-3'>Khalti</button>
                         </div>
                     </div>
                     {/* </form> */}
                 </div>
+                }
             </div>
         </>
     )

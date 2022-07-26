@@ -1,11 +1,10 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../images/logo/logo.png'
 import './style.css'
 import { Link } from 'react-router-dom'
-import { CartContext } from '../Context/CardContext'
-
+import useCartStore from '../../zustand/store'
 const Navbar = ({ token }) => {
-    const [cart] = useContext(CartContext);
+    let carts = useCartStore()
     const [colorChange, setColorchange] = useState(false);
     const changeNavbarColor = () => {
         if (window.scrollY > 0) {
@@ -21,6 +20,9 @@ const Navbar = ({ token }) => {
         localStorage.clear('token')
         window.location = '/'
     }
+    useEffect(() => {
+        carts.getCarts()
+      }, [])
 
     return (
         <>
@@ -56,7 +58,7 @@ const Navbar = ({ token }) => {
                         {
                             token ? <div className="cart-count mx-5">
                                 <Link to='/cart' className='fa fa-shopping-cart h5 '>
-                                    <small>{cart.length}</small>
+                                    <small>{carts?.carts?.length}</small>
                                 </Link>
                             </div> : null
                         }

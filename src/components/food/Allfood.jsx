@@ -1,30 +1,20 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import './food.css'
 import { Link, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import ReactStars from "react-rating-stars-component";
+import useFoodstore from '../../zustand/foodStore';
 const Allfood = () => {
-    var { search } = useLocation()
-    console.log(search);
-    const [food, setFood] = useState([]);
-    const getfood = () => {
-        axios.get("/getallfood" + search).then(data => {
-            setFood(data.data)
-            console.log(data.data);
-        }).catch(e => {
-            console.log(e);
-        })
-    }
+    let useFood = useFoodstore()
     useEffect(() => {
-        getfood()
-
-    }, [food])
+        useFood.getfood()
+    }, [])
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResults, setSearchResults] = useState([]);
     const handleChange = event => {
         setSearchTerm(event.target.value);
     };
-    React.useEffect(() => {
-        const results = food.filter(food =>
+    useEffect(() => {
+        const results = useFood.food.filter(food =>
             food.name.toLowerCase().includes(searchTerm)
         );
         setSearchResults(results);
@@ -33,7 +23,6 @@ const Allfood = () => {
     return (
         <div className="container my-5">
             <div className="text-food text-center pt-5">
-                {/* <p style={{ fontSize: "2rem", fontWeight: "bold" }}>Our Regular Food Collections</p> */}
             </div>
             <form className='search-div d-flex justify-content-center '>
                 <div className="search w-50  mx-2 d-flex my-5">
@@ -46,33 +35,70 @@ const Allfood = () => {
                     searchResults.length > 0 ?
                         searchResults.map((food, index) => {
                             return (
-                                <div key={index + 1} className="col-md-3 me-4 my-3 p-0 food-div">
-                                    <div className="foods  p-0">
-                                        <div className="">
-                                            <img className='food-img ' src={`http://localhost:5000/${food.image}`} alt="" />
-                                        </div>
-                                        <div className="food-content">
-                                            <h1 className=''>{food.name}</h1>
-                                            <p className='my-1 text-white'>Rs.{food.price}</p>
-                                            <div className="read-more bg-warning py-2 px-2">
-                                                <Link to={`/food/${food._id}`}> <span>Read More</span></Link>
-                                            </div>
-                                        </div>
-                                        <div className="shadow-d"></div>
+                                <div key={index + 1} className="col-md-3 my-3 food-div">
+                                <div className="foods  p-0">
+                                    <div className="">
+                                        <img className='food-img ' src={`http://localhost:5000/${food.image}`} alt="" />
                                     </div>
+                                    <div className="food-content">
+                                        <h1 className=''>{food.name}</h1>
+                                        <div >
+                                            {
+                                                food.totalrating &&
+                                                <div className='d-flex align-items-center justify-content-center'>
+                                                    <span style={{ fontSize: "1 rem" }} className='me-1 mt-1 text-light'>{food.totalrating.toFixed(2)}</span>
+                                                    <ReactStars
+                                                        value={food.totalrating}
+                                                        count={food.totalrating}
+                                                        size={14}
+                                                        isHalf={true}
+                                                        emptyIcon={<i className="far fa-star"></i>}
+                                                        halfIcon={<i className="fa fa-star-half-alt"></i>}
+                                                        fullIcon={<i className="fa fa-star"></i>}
+                                                        activeColor="#ffd700"
+                                                    />
+                                                </div>
+
+                                            }
+                                        </div>
+                                        <p className='my-1 text-white'>Rs.{food.price}</p>
+                                        <div className="read-more bg-warning py-2 px-2">
+                                            <Link to={`/food/${food._id}`}> <span>Read More</span></Link>
+                                        </div>
+                                    </div>
+                                    <div className="shadow-d"></div>
                                 </div>
+                            </div>
                             )
-                        })
-                        :
-                        food.map((food, index) => {
+                        }) :
+                        useFood.food.map((food, index) => {
                             return (
-                                <div key={index + 1} className="col-md-3 food-div">
+                                <div key={index + 1} className="col-md-3 my-3 food-div">
                                     <div className="foods  p-0">
                                         <div className="">
                                             <img className='food-img ' src={`http://localhost:5000/${food.image}`} alt="" />
                                         </div>
                                         <div className="food-content">
                                             <h1 className=''>{food.name}</h1>
+                                            <div >
+                                                {
+                                                    food.totalrating &&
+                                                    <div className='d-flex align-items-center justify-content-center'>
+                                                        <span style={{ fontSize: "1 rem" }} className='me-1 mt-1 text-light'>{food.totalrating.toFixed(2)}</span>
+                                                        <ReactStars
+                                                            value={food.totalrating}
+                                                            count={food.totalrating}
+                                                            size={14}
+                                                            isHalf={true}
+                                                            emptyIcon={<i className="far fa-star"></i>}
+                                                            halfIcon={<i className="fa fa-star-half-alt"></i>}
+                                                            fullIcon={<i className="fa fa-star"></i>}
+                                                            activeColor="#ffd700"
+                                                        />
+                                                    </div>
+
+                                                }
+                                            </div>
                                             <p className='my-1 text-white'>Rs.{food.price}</p>
                                             <div className="read-more bg-warning py-2 px-2">
                                                 <Link to={`/food/${food._id}`}> <span>Read More</span></Link>

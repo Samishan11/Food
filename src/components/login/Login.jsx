@@ -15,11 +15,15 @@ const Login = () => {
                 password
             })
             if (responce.data.token && responce.data.verified === false) {
-                navigation('/otp-verification',{state: {email:email} })
-            } else if (responce.data.verified) {
+                navigation('/otp-verification', { state: { email: email } })
+            } else if (responce.data.verified && responce.data.role === 0 ) {
                 localStorage.setItem('token', responce.data.token)
                 window.location = '/'
-            } else {
+            } else if (responce.data.role === 1 && responce.data.verified) {
+                localStorage.setItem('token', responce.data.token)
+                window.location = '/admin'
+            }
+            else {
                 console.log('email or password not match');
             }
         } catch (error) {
@@ -27,7 +31,7 @@ const Login = () => {
         }
     }
 
-   
+
 
     return (
         <>
