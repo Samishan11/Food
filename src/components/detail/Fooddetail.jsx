@@ -34,7 +34,7 @@ const Fooddetail = ({ userdata }) => {
             // state management using zustand
             carts.addtoCart({ id: food, name: Food?.name, quantity: quantity, price: Food?.price, user: user, image: Food?.image })
             // fetch api addtocart
-            var cart = await axios.post('/addtocart', {
+            var cart = await axios.post('https://mern-food-bakend.herokuapp.com/api/addtocart', {
                 food,
                 quantity,
                 user

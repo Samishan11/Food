@@ -21,7 +21,7 @@ const Cart = () => {
     // update cart
     const updatecart = (data, quantity) => {
         carts.updateCart(data, quantity)
-        axios.put(`/updatecart/${data._id}`, {
+        axios.put(`https://mern-food-bakend.herokuapp.com/api/updatecart/${data._id}`, {
             quantity
         }).then(data => {
             console.log(data);
@@ -32,7 +32,7 @@ const Cart = () => {
     // remove cart
     const removecart = (id) => {
         carts.removeCart(id)
-        axios.delete(`/removecart/${id}`, {
+        axios.delete(`https://mern-food-bakend.herokuapp.com/api/removecart/${id}`, {
         }).then(data => {
             // console.log(data);
         }).catch(e => {
