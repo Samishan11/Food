@@ -38,7 +38,7 @@ const Allfood = () => {
                                 <div key={index + 1} className="col-md-3 my-3 food-div">
                                 <div className="foods  p-0">
                                     <div className="">
-                                        <img className='food-img ' src={`http://localhost:5000/${food.image}`} alt="" />
+                                        <img className='food-img ' src={`/${food.image}`} alt="" />
                                     </div>
                                     <div className="food-content">
                                         <h1 className=''>{food.name}</h1>
@@ -76,7 +76,7 @@ const Allfood = () => {
                                 <div key={index + 1} className="col-md-3 my-3 food-div">
                                     <div className="foods  p-0">
                                         <div className="">
-                                            <img className='food-img ' src={`http://localhost:5000/${food.image}`} alt="" />
+                                            <img className='food-img ' src={`/${food.image}`} alt="" />
                                         </div>
                                         <div className="food-content">
                                             <h1 className=''>{food.name}</h1>
