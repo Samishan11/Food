@@ -85,7 +85,7 @@ const OrderStatus = () => {
                                                                 <tbody key={index + 1}>
                                                                     <tr >
                                                                         <td>
-                                                                            <img src={`http://localhost:5000/${food?.food?.image}`} width={80} alt="" />
+                                                                            <img src={`https://mern-food-bakend.herokuapp.com/${food?.food?.image}`} width={80} alt="" />
                                                                             <span style={{ fontSize: '1rem' }} className='mx-3'>{food.food.name}</span>
                                                                         </td>
                                                                         <td><p style={{ fontSize: '1rem' }}>{food?.quantity}</p></td>

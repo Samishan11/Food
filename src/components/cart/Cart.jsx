@@ -72,7 +72,7 @@ const Cart = () => {
         publicKey: myKey.publicTestKey,
         productIdentity: '12345',
         productName: 'foods',
-        productUrl: "http://localhost:3000",
+        productUrl: "https://mern-food-bakend.herokuapp.com",
         eventHandler: {
             onSuccess(payload) {
                 console.log(payload);
@@ -128,7 +128,7 @@ const Cart = () => {
                                     return (
                                         <tr key={index + 1}>
                                             <td>
-                                                <img src={`http://localhost:5000/${cart.image}`} width={80} alt="" />
+                                                <img src={`https://mern-food-bakend.herokuapp.com/${cart.image}`} width={80} alt="" />
                                                 <span style={{ fontSize: '1rem' }} className='mx-3'>{cart.name}</span>
                                             </td>
                                             <td className='d-flex border-none'>

@@ -16,10 +16,10 @@ const Login = () => {
                 email,
                 password
             })
-            toast.error('oops!.. something went wrong', {position:toast.POSITION.TOP_RIGHT})  
             if (responce.data.token && responce.data.verified === false) {
                 navigation('/otp-verification', { state: { email: email } })
             } else if (responce.data.verified && responce.data.role === 0 ) {
+                toast.success('Sucessfully login', {position:toast.POSITION.TOP_RIGHT})  
                 localStorage.setItem('token', responce.data.token)
                 window.location = '/'
             } else if (responce.data.role === 1 && responce.data.verified) {
@@ -27,6 +27,7 @@ const Login = () => {
                 window.location = '/admin'
             }
             else {
+                toast.error('email or password not match', {position:toast.POSITION.TOP_RIGHT})  
                 console.log('email or password not match');
             }
         } catch (error) {
