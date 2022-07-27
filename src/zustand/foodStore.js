@@ -10,7 +10,7 @@ const useFoodstore = create(set => ({
         set({ food: response.data })
     },
     getsingleFood: async (food , user) => {
-        const response = await axios.get(`/fooddetail/${food}`)
+        const response = await axios.get(`https://mern-food-bakend.herokuapp.com/api/fooddetail/${food}`)
         for( let i in response.data.rating){
             if(response.data.rating[i].user === user && response.data._id === food ){
                 // console.log(response.data.rating[i].rating);
