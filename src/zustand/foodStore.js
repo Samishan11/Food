@@ -7,7 +7,6 @@ const useFoodstore = create(set => ({
     myrating:[],
     getfood: async () => {
         const response = await axios.get('https://mern-food-bakend.herokuapp.com/api/getallfood')
-        console.log(response)
         set({ food: response.data })
     },
     getsingleFood: async (food , user) => {
