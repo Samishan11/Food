@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Link , useNavigate } from 'react-router-dom'
 import './register.css'
+// import { Toast } from 'react-toastify/dist/components'
 import axios from 'axios'
 const Register = () => {
     const navigation = useNavigate()
@@ -15,7 +16,7 @@ const Register = () => {
                 email,
                 password
             })
-            toast.error('oops!.. something went wrong', {position:toast.POSITION.TOP_RIGHT})  
+            // Toast.error('oops!.. something went wrong', {position:Toast.POSITION.TOP_RIGHT})  
             console.log(responce.data.success);
             if (responce.data.success === 'true') {
                 navigation('/login')
@@ -23,7 +24,7 @@ const Register = () => {
                 console.log('user already exist');
             }
         } catch (error) {
-            toast.error('oops!.. something went wrong', {position:toast.POSITION.TOP_RIGHT})  
+            // Toast.error('oops!.. something went wrong', {position:Toast.POSITION.TOP_RIGHT})  
             console.log(error);
         }
     }

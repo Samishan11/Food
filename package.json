@@ -52,5 +52,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://mern-foodapp.herokuapp.com"
+  "proxy": "https://mern-foodapp.herokuapp.com/api"
 }
