@@ -6,11 +6,11 @@ const useFoodstore = create(set => ({
     detail:[],
     myrating:[],
     getfood: async () => {
-        const response = await axios.get('https://mern-foodapp.herokuapp.com/api/getallfood')
+        const response = await axios.get('/getallfood')
         set({ food: response.data })
     },
     getsingleFood: async (food , user) => {
-        const response = await axios.get(`https://mern-foodapp.herokuapp.com/api/fooddetail/${food}`)
+        const response = await axios.get(`/fooddetail/${food}`)
         for( let i in response.data.rating){
             if(response.data.rating[i].user === user && response.data._id === food ){
                 // console.log(response.data.rating[i].rating);
