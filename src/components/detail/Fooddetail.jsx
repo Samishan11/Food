@@ -47,7 +47,7 @@ const Fooddetail = ({ userdata }) => {
     }
     // 
     const ratingChanged = (newRating) => {
-        axios.put(`/rating-rating/${food}`, {
+        axios.put(`https://mern-food-bakend.herokuapp.com/api/rating-rating/${food}`, {
             user: user, rating: newRating
         }).then(res => {
             console.log(res.data)
