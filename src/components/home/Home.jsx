@@ -74,7 +74,7 @@ const Home = () => {
                     </div>
                     <div className="items my-5">
                         <div className="row">
-                            <div className="col-md-4">
+                            <div className="col-md-4 my-1">
                                 <div className="item">
                                     <div className="img">
                                         <img className='item-img' src={pizza} alt="" />
@@ -90,7 +90,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-4 my-1">
                                 <div className="item">
                                     <div className="img">
                                         <img className='item-img' src={burger} alt="" />
@@ -106,7 +106,7 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="col-md-4">
+                            <div className="col-md-4 my-1">
                                 <div className="item">
                                     <div className="img">
                                         <img className='item-img' src={pizza} alt="" />
