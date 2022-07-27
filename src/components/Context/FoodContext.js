@@ -5,7 +5,7 @@ export const Foodprovider = (props) => {
     const [contextfood, setContextFood] = useState([]);
     useEffect(() => {
         const getfood = () => {
-            axios.get("/getallfood").then(data => {
+            axios.get("api/getallfood").then(data => {
                 setContextFood(data.data)
             }).catch(e => {
                 console.log(e);
