@@ -9,7 +9,7 @@ const Footer = () => {
                         <div className="row">
                             <div className="col-xs-12 col-sm-6 col-md-3">
                                 <div className="widget subscribe no-box">
-                                    <h1 className="widget-title">Foodmandu2.0<span /></h1>
+                                    <h1 className="widget-title">KanduFood2.0<span /></h1>
                                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ab officia cumque alias corporis placeat odio fugit dolorum porro explicabo, temporibus, molestiae perferendis blanditiis quas pariatur iste eveniet sint. Temporibus non dolorem officiis laborum suscipit, commodi dolor ratione. Ex voluptatibus sint velit minus saepe laboriosam itaque eligendi inventore ratione laborum.</p>
                                 </div>
                             </div>
