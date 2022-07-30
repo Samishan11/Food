@@ -66,7 +66,7 @@ const Footer = () => {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12 text-center">
-                                <p>Copyright Foodmandu2.0 © 2022. All rights reserved.</p>
+                                <p>Copyright KanduFood2.0 © 2022. All rights reserved.</p>
                             </div>
                         </div>
                     </div>
