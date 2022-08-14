@@ -55,7 +55,7 @@ const Cart = () => {
     // order
     const order = (e) => {
         e.preventDefault();
-        axios.post('order', {
+        axios.post('https://mern-food-bakend.herokuapp.com/api/order', {
             user: user,
             total_price: total,
             foods: carts.carts
