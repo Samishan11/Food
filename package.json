@@ -52,5 +52,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://mern-food-bakend.herokuapp.com/api"
+  "proxy": "http://localhost:5000/api"
 }

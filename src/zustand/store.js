@@ -4,7 +4,7 @@ const useCartStore = create(set => ({
     carts: [],
     orders: [],
     getCarts: async () => {
-        const response = await axios.get('https://mern-food-bakend.herokuapp.com/api/getcart')
+        const response = await axios.get('/getcart')
         set({ carts: response.data.data })
     },
     // to add cart

@@ -12,7 +12,7 @@ const Login = () => {
     const login = async (e) => {
         e.preventDefault();
         try {
-            const responce = await axios.post('https://mern-food-bakend.herokuapp.com/api/login', {
+            const responce = await axios.post('/login', {
                 email,
                 password
             })

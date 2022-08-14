@@ -100,7 +100,7 @@ const Home = () => {
                                             <i className="fas fa-pizza-slice my-auto h6"></i>
                                             <span className='my-auto fw-bold mx-2 h6'>Pizza</span>
                                         </div>
-                                        <Link to={`food/?name=pizza`}> <div className="round bg-warning mx-3">
+                                        <Link to={`/food/?name=pizza`}> <div className="round bg-warning mx-3">
                                             <i className='fas fa-arrow-right'></i>
                                         </div></Link>
                                     </div>

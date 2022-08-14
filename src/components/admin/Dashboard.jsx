@@ -22,7 +22,7 @@ const Dashboard = () => {
     <div className={navcollapse ? "d-flex toggled" : "d-flex"} id="wrapper">
       {/* Sidebar */}
       <div className="bg-white" id="sidebar-wrapper">
-        <div className="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i className="fas fa-user-secret me-2" />Codersbite</div>
+        <div className="sidebar-heading text-center py-4 primary-text fs-4 fw-bold text-uppercase border-bottom"><i className="fas fa-user-secret me-2" /><Link to={'/'}>FoodApp.0</Link></div>
         <div className="list-group list-group-flush my-3">
           <Link onClick={() => {
             setDashboard(true)

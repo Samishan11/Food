@@ -12,7 +12,7 @@ const Register = () => {
     const register = async (e) => {
         e.preventDefault();
         try {
-            const responce = await axios.post('https://mern-food-bakend.herokuapp.com/api/register', {
+            const responce = await axios.post('/register', {
                 username,
                 email,
                 password

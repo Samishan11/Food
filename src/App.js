@@ -32,10 +32,14 @@ function App() {
   const token_data = localStorage.getItem("token")
   const token = parseJwt(token_data)
   const userdata = token
+  console.log(window.location.pathname)
   return (
     <Foodprovider>
       <Router>
-        <Navbar token={token}></Navbar>
+        {
+        window.location.pathname == '/admin' ?
+            null : <Navbar token={token}></Navbar>
+        }
         <Routes>
           <Route exact path='/login' element={<Login></Login>}></Route>
           <Route exact path='/register' element={<Register></Register>}></Route>
