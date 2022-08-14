@@ -61,8 +61,7 @@ const Cart = () => {
             foods: carts.carts
         }).then(cart => {
             carts.addOrder(carts.carts)
-            console.log(carts);
-            // console.log(cart);
+            console.log(cart);
         }).catch(e => {
             console.log(e);
         })
