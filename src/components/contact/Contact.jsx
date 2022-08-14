@@ -12,7 +12,7 @@ const Contact = ({ userdata }) => {
     const Contact = async (e) => {
         try {
             e.preventDefault();
-            const con = await axios.post('/contact', {
+            const con = await axios.post('https://mern-food-bakend.herokuapp.com/api/contact', {
                 username,
                 lastname,
                 email,

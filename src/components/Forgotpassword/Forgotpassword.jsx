@@ -7,7 +7,7 @@ const Forgotpassword = () => {
     const forgotpassword = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/forgot-password', {
+            await axios.post('https://mern-food-bakend.herokuapp.com/api/forgot-password', {
                 email
             }).then(d => {
                 setmsg(d.data)

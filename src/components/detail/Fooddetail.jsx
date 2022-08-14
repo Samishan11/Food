@@ -35,7 +35,7 @@ const Fooddetail = ({ userdata }) => {
             carts.addtoCart({ id: food, name: Food?.name, quantity: quantity, price: Food?.price, user: user, image: Food?.image })
             
             // fetch api addtocart
-            var cart = await axios.post('/addtocart', {
+            var cart = await axios.post('https://mern-food-bakend.herokuapp.com/api/addtocart', {
                 food,
                 quantity,
                 user
@@ -48,7 +48,7 @@ const Fooddetail = ({ userdata }) => {
     }
     // 
     const ratingChanged = (newRating) => {
-        axios.put(`/rating-rating/${food}`, {
+        axios.put(`https://mern-food-bakend.herokuapp.com/api/rating-rating/${food}`, {
             user: user, rating: newRating
         }).then(res => {
             console.log(res.data)
@@ -78,7 +78,7 @@ const Fooddetail = ({ userdata }) => {
             <div className="container singlepage">
                 <div className="row">
                     <div className="col-md-5 me-1 col-12">
-                        <img style={{ height: "80vh", objectFit: "cover" }} className='foodd-img' src={`http://localhost:5000/${Food.image}`} alt="chicken" />
+                        <img style={{ height: "80vh", objectFit: "cover" }} className='foodd-img' src={`https://mern-food-bakend.herokuapp.com/${Food.image}`} alt="chicken" />
                     </div>
                     <div className="col-md-6 col-12">
                         <form >

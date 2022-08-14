@@ -9,7 +9,7 @@ const Resetpassword = () => {
     const resetpassword = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/reset-password/${tokenn}`, {
+            await axios.put(`https://mern-food-bakend.herokuapp.com/api/reset-password/${tokenn}`, {
                 newpassword,
                 confirmpassword
 
