@@ -11,13 +11,13 @@ const Otp = () => {
     const [msg, setMsg] = useState('')
     const verifyOtp = (e) => {
         e.preventDefault()
-        axios.post('/verifyotp', {
+        axios.post('https://mern-food-bakend.herokuapp.com/api/verifyotp', {
             email,
             otp: (otp0 + otp1 + otp2 + otp3)
         }).then(d => {
             if (d.data.success) {
                 setMsg(d.data.message)
-                window.location = '/'
+                window.location = '/login'
             }else{
                 setMsg(d.data)
             }
