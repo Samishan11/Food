@@ -31,8 +31,8 @@ const Otp = () => {
         document.getElementById("create-course-form").reset();
     }
     const Resendotp = () => {
-        axios.put(`/resend-otp/${email}`).then(d => {
-            console.log(d);
+        axios.put(`https://mern-food-bakend.herokuapp.com/api/resend-otp/${email}`).then(d => {
+            // console.log(d);
             resetform()
             setMsg()
         }).catch(e => {

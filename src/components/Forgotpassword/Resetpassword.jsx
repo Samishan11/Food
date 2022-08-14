@@ -12,7 +12,6 @@ const Resetpassword = () => {
             await axios.put(`https://mern-food-bakend.herokuapp.com/api/reset-password/${tokenn}`, {
                 newpassword,
                 confirmpassword
-
             }).then(d => {
                 setmsg(d.data)
             }).catch(e => {
