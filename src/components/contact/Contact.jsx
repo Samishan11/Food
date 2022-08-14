@@ -73,7 +73,7 @@ const Contact = ({ userdata }) => {
                         </div>
                         <button className='btn btn-outline-dark d-block mx-auto'>Submit</button>
                     </form>
-                    {
+                    {/* {
                         user?.map((val,ind)=>{
                             return(
                                 <div className="d-flex my-3">
@@ -82,7 +82,7 @@ const Contact = ({ userdata }) => {
                                 </div>
                             )
                         })
-                    }
+                    } */}
                 </div>
                 {/*  */}
             </div>

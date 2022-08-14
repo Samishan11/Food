@@ -45,11 +45,11 @@ const useCartStore = create(set => ({
 
     // orders
     addOrder: (data) =>
-        set(state => ({
-            orders: [
-                ...state.orders , data
-            ],
-            carts:[]
+    set(state => ({
+        orders: [
+            ...state.orders , data
+        ],
+        carts:[]
         })),
     // get orders
     getOrders: async () => {

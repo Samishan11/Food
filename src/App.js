@@ -32,7 +32,6 @@ function App() {
   const token_data = localStorage.getItem("token")
   const token = parseJwt(token_data)
   const userdata = token
-  console.log(window.location.pathname)
   return (
     <Foodprovider>
       <Router>
