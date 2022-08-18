@@ -6,8 +6,7 @@ import KhaltiCheckout from "khalti-checkout-web";
 import useCartStore from '../../zustand/store';
 import { Link } from 'react-router-dom';
 import emptycartimage from '../../images/emptycart.png'
-import { toast } from 'react-toastify'
-
+import {toast} from 'react-toastify'
 const Cart = () => {
     let carts = useCartStore()
     useEffect(() => {
@@ -60,11 +59,11 @@ const Cart = () => {
         axios.post('https://mern-food-bakend.herokuapp.com/api/order', {
             user: user,
             total_price: total,
-            foods: carts.carts?.food
+            foods: carts.carts
         }).then(cart => {
-            toast.success('Order sucessfully', {position:toast.POSITION.TOP_RIGHT}) 
             carts.addOrder(carts.carts)
-            console.log(carts.carts);
+            console.log(carts);
+            // console.log(cart);
         }).catch(e => {
             console.log(e);
         })
@@ -86,7 +85,6 @@ const Cart = () => {
                     foods: carts.carts,
                     payment: true
                 }).then(cart => {
-                    toast.success('Order sucessfully', {position:toast.POSITION.TOP_RIGHT}) 
                     console.log(cart);
                 }).catch(e => {
                     console.log(e);
