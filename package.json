@@ -1,6 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
+  "proxy": "https://backend-foodapi.up.railway.app/api",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -11,6 +12,7 @@
     "jquery": "^3.6.0",
     "khalti-checkout-web": "^2.2.0",
     "react": "^18.0.0",
+    "react-bootstrap": "^2.7.4",
     "react-chartjs-2": "^4.2.0",
     "react-context": "0.0.3",
     "react-dom": "^18.0.0",
@@ -51,6 +53,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "https://mern-food-bakend.herokuapp.com/api"
+  }
 }
