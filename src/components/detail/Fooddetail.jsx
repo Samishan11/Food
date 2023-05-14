@@ -92,7 +92,7 @@ const Fooddetail = ({ userdata }) => {
             <img
               style={{ height: "80vh", objectFit: "cover" }}
               className="foodd-img"
-              src={`https://mern-food-bakend.herokuapp.com/${Food.image}`}
+              src={`https://backend-foodapi.up.railway.app/${Food.image}`}
               alt="chicken"
             />
           </div>
