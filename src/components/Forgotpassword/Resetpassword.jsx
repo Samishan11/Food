@@ -10,10 +10,13 @@ const Resetpassword = () => {
     e.preventDefault();
     try {
       await axios
-        .put(`/reset-password/${tokenn}`, {
-          newpassword,
-          confirmpassword,
-        })
+        .put(
+          `https://food-backend-50oj.onrender.com/api/reset-password/${tokenn}`,
+          {
+            newpassword,
+            confirmpassword,
+          }
+        )
         .then((d) => {
           setmsg(d.data);
         })

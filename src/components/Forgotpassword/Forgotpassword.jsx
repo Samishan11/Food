@@ -8,7 +8,7 @@ const Forgotpassword = () => {
     e.preventDefault();
     try {
       await axios
-        .post("/forgot-password", {
+        .post("https://food-backend-50oj.onrender.com/api/forgot-password", {
           email,
         })
         .then((d) => {

@@ -12,14 +12,14 @@ const Otp = () => {
   const verifyOtp = (e) => {
     e.preventDefault();
     axios
-      .post("/verifyotp", {
+      .post("https://food-backend-50oj.onrender.com/api/verifyotp", {
         email,
         otp: otp0 + otp1 + otp2 + otp3,
       })
       .then((d) => {
         if (d.data.success) {
           setMsg(d.data.message);
-          window.location = "/login";
+          window.location = "https://food-backend-50oj.onrender.com/api/login";
         } else {
           setMsg(d.data);
         }
@@ -35,7 +35,7 @@ const Otp = () => {
   };
   const Resendotp = () => {
     axios
-      .put(`/resend-otp/${email}`)
+      .put(`https://food-backend-50oj.onrender.com/api/resend-otp/${email}`)
       .then((d) => {
         // console.log(d);
         resetform();
