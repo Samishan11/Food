@@ -14,7 +14,7 @@ const Allfood = () => {
     setSearchTerm(event.target.value);
   };
   useEffect(() => {
-    const results = useFood.food.filter((food) =>
+    const results = useFood?.food?.filter((food) =>
       food.name.toLowerCase().includes(searchTerm)
     );
     setSearchResults(results);
@@ -37,8 +37,8 @@ const Allfood = () => {
         </div>
       </form>
       <div className="row mx-2 mt-5">
-        {searchResults.length > 0
-          ? searchResults.map((food, index) => {
+        {searchResults?.length > 0
+          ? searchResults?.map((food, index) => {
               return (
                 <div key={index + 1} className="col-md-3 my-3 food-div">
                   <div className="foods  p-0">
@@ -91,7 +91,7 @@ const Allfood = () => {
                 </div>
               );
             })
-          : useFood.food.map((food, index) => {
+          : useFood?.food?.map((food, index) => {
               return (
                 <div key={index + 1} className="col-md-3 my-3 food-div">
                   <div className="foods  p-0">

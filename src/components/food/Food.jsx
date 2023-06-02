@@ -8,7 +8,7 @@ import ReactStars from "react-rating-stars-component";
 const Food = () => {
   let food = useFoodstore();
   React.useEffect(() => {
-    food.getfood();
+    food?.getfood();
   }, []);
   return (
     <div className="container my-5 mx-2">
@@ -23,7 +23,7 @@ const Food = () => {
         </p>
       </div>
       <div className="row mt-5">
-        {food.food?.map((food, index) => {
+        {food?.food?.map((food, index) => {
           return (
             <div key={index + 1} className="col-md-3 my-3 food-div">
               <div className="foods  p-0">
@@ -40,9 +40,9 @@ const Food = () => {
                   />
                 </div>
                 <div className="food-content">
-                  <h1 className="">{food.name}</h1>
+                  <h1 className="">{food?.name}</h1>
                   <div>
-                    {food.totalrating && (
+                    {food?.totalrating && (
                       <div className="d-flex align-items-center justify-content-center">
                         <span
                           style={{ fontSize: "1 rem" }}
@@ -51,8 +51,8 @@ const Food = () => {
                           {food.totalrating.toFixed(2)}
                         </span>
                         <ReactStars
-                          value={food.totalrating}
-                          count={food.totalrating}
+                          value={food?.totalrating}
+                          count={food?.totalrating}
                           size={14}
                           isHalf={true}
                           emptyIcon={<i className="far fa-star"></i>}
