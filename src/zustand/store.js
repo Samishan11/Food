@@ -4,7 +4,9 @@ const useCartStore = create((set) => ({
   carts: [],
   orders: [],
   getCarts: async () => {
-    const response = await axios.get("/getcart");
+    const response = await axios.get(
+      "https://food-backend-50oj.onrender.com/api/getcart"
+    );
     set({ carts: response.data.data });
   },
   // to add cart
@@ -51,7 +53,9 @@ const useCartStore = create((set) => ({
     })),
   // get orders
   getOrders: async () => {
-    const response = await axios.get("/showorder");
+    const response = await axios.get(
+      "https://food-backend-50oj.onrender.com/api/showorder"
+    );
     set({ orders: response.data });
   },
 }));
