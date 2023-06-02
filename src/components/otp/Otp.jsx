@@ -19,6 +19,7 @@ const Otp = () => {
       .then((d) => {
         if (d.data.success) {
           setMsg(d.data.message);
+          console.log(d);
           window.location = "https://food-backend-50oj.onrender.com/api/login";
         } else {
           setMsg(d.data);
