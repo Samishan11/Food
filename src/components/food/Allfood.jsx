@@ -19,6 +19,7 @@ const Allfood = () => {
     );
     setSearchResults(results);
   }, [searchTerm]);
+  console.log(searchResults);
 
   return (
     <div className="container my-5">
@@ -43,8 +44,13 @@ const Allfood = () => {
                   <div className="foods  p-0">
                     <div className="">
                       <img
+                        style={{
+                          height: "250px",
+                          width: "100%",
+                          objectFit: "cover",
+                        }}
                         className="food-img "
-                        src={`/${food.image}`}
+                        src={`https://food-backend-50oj.onrender.com/${food.image}`}
                         alt=""
                       />
                     </div>
@@ -91,8 +97,13 @@ const Allfood = () => {
                   <div className="foods  p-0">
                     <div className="">
                       <img
+                        style={{
+                          height: "250px",
+                          width: "100%",
+                          objectFit: "cover",
+                        }}
                         className="food-img "
-                        src={`https://backend-foodapi.up.railway.app/${food.image}`}
+                        src={`https://food-backend-50oj.onrender.com/${food.image}`}
                         alt=""
                       />
                     </div>

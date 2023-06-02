@@ -20,7 +20,9 @@ const Searchfood = () => {
     <div className="container my-5">
       {searchResults.length > 0 && (
         <div className="text-food text-center pt-5">
-          <h1 style={{ fontSize: "1.4rem" }}>Search Items</h1>
+          <h1 className="text-warning fw-bold" style={{ fontSize: "1.4rem" }}>
+            {searchResults?.length} Items found
+          </h1>
         </div>
       )}
       <div className="row mx-2 mt-5">
@@ -31,8 +33,13 @@ const Searchfood = () => {
                 <div className="foods  p-0">
                   <div className="">
                     <img
+                      style={{
+                        height: "250px",
+                        width: "100%",
+                        objectFit: "cover",
+                      }}
                       className="food-img "
-                      src={`https://backend-foodapi.up.railway.app/${food.image}`}
+                      src={`https://food-backend-50oj.onrender.com/${food.image}`}
                       alt=""
                     />
                   </div>

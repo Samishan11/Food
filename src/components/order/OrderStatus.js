@@ -209,7 +209,7 @@ const OrderStatus = () => {
                               <tr>
                                 <td>
                                   <img
-                                    src={`https://backend-foodapi.up.railway.app/${food?.food?.image}`}
+                                    src={`https://food-backend-50oj.onrender.com/${food?.food?.image}`}
                                     width={80}
                                     alt=""
                                   />
@@ -217,7 +217,7 @@ const OrderStatus = () => {
                                     style={{ fontSize: "1rem" }}
                                     className="mx-3"
                                   >
-                                    {food.food.name}
+                                    {food?.food?.name}
                                   </span>
                                 </td>
                                 <td>

@@ -87,7 +87,7 @@ const Cart = () => {
     publicKey: myKey.publicTestKey,
     productIdentity: "12345",
     productName: "foods",
-    productUrl: "https://backend-foodapi.up.railway.app",
+    productUrl: "https://food-backend-50oj.onrender.com/",
     eventHandler: {
       onSuccess(payload) {
         console.log(payload);
@@ -151,7 +151,7 @@ const Cart = () => {
                     <tr key={index + 1}>
                       <td>
                         <img
-                          src={`https://backend-foodapi.up.railway.app/${cart.image}`}
+                          src={`https://food-backend-50oj.onrender.com/${cart.image}`}
                           width={80}
                           alt=""
                         />

@@ -92,7 +92,7 @@ const Fooddetail = ({ userdata }) => {
             <img
               style={{ height: "80vh", objectFit: "cover" }}
               className="foodd-img"
-              src={`https://backend-foodapi.up.railway.app/${Food.image}`}
+              src={`https://food-backend-50oj.onrender.com/${Food.image}`}
               alt="chicken"
             />
           </div>

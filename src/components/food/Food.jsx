@@ -29,8 +29,13 @@ const Food = () => {
               <div className="foods  p-0">
                 <div className="">
                   <img
+                    style={{
+                      height: "250px",
+                      width: "100%",
+                      objectFit: "cover",
+                    }}
                     className="food-img "
-                    src={`https://backend-foodapi.up.railway.app/${food.image}`}
+                    src={`https://food-backend-50oj.onrender.com/${food.image}`}
                     alt=""
                   />
                 </div>
@@ -59,9 +64,8 @@ const Food = () => {
                     )}
                   </div>
                   <p className="my-1 text-white">Rs.{food.price}</p>
-                  <div className="read-more bg-warning py-2 px-2">
+                  <div className="read-more bg-warning py-1 rounded px-2">
                     <Link to={`/food/${food._id}`}>
-                      {" "}
                       <span>Read More</span>
                     </Link>
                   </div>
