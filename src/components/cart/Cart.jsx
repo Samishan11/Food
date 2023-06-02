@@ -28,9 +28,12 @@ const Cart = () => {
   const updatecart = (data, quantity) => {
     carts.updateCart(data, quantity);
     axios
-      .put(`/updatecart/${data._id}`, {
-        quantity,
-      })
+      .put(
+        `https://food-backend-50oj.onrender.com/api/updatecart/${data._id}`,
+        {
+          quantity,
+        }
+      )
       .then((data) => {
         console.log(data);
       })
@@ -42,7 +45,7 @@ const Cart = () => {
   const removecart = (id) => {
     carts.removeCart(id);
     axios
-      .delete(`/removecart/${id}`, {})
+      .delete(`https://food-backend-50oj.onrender.com/api/removecart/${id}`, {})
       .then((data) => {
         // console.log(data);
       })
@@ -68,7 +71,7 @@ const Cart = () => {
   const order = (e) => {
     e.preventDefault();
     axios
-      .post("/order", {
+      .post("https://food-backend-50oj.onrender.com/api/order", {
         user: user,
         total_price: total,
         foods: carts.carts,
@@ -94,7 +97,7 @@ const Cart = () => {
         carts.addOrder(carts.carts);
         console.log(carts);
         axios
-          .post("/order", {
+          .post("https://food-backend-50oj.onrender.com/api/order", {
             user: user,
             total_price: total,
             foods: carts.carts,

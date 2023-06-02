@@ -3,7 +3,9 @@ import axios from "axios";
 const useOrderstore = create((set) => ({
   order: [],
   getorder: async () => {
-    const response = await axios.get("/showallorder");
+    const response = await axios.get(
+      "https://food-backend-50oj.onrender.com/api/showallorder"
+    );
     set({ order: response.data });
   },
   // update order

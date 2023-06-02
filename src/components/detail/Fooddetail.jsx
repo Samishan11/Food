@@ -41,11 +41,14 @@ const Fooddetail = ({ userdata }) => {
       });
 
       // fetch api addtocart
-      var cart = await axios.post("/addtocart", {
-        food,
-        quantity,
-        user,
-      });
+      var cart = await axios.post(
+        "https://food-backend-50oj.onrender.com/api/addtocart",
+        {
+          food,
+          quantity,
+          user,
+        }
+      );
       console.log(cart);
     } catch (error) {
       console.log(error);
@@ -54,7 +57,7 @@ const Fooddetail = ({ userdata }) => {
   //
   const ratingChanged = (newRating) => {
     axios
-      .put(`/rating-rating/${food}`, {
+      .put(`https://food-backend-50oj.onrender.com/api/rating-rating/${food}`, {
         user: user,
         rating: newRating,
       })
