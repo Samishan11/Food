@@ -36,22 +36,27 @@ const NavigationBar = ({ token }) => {
   return (
     <>
       <Navbar
+        collapseOnSelect
         expand="lg"
         className={`${
           colorChange
             ? "navbar bg-white fixed-top nav_bar navbar-light"
             : "navbar fixed-top nav_baralt navbar-light"
-        }`}
+        } `}
       >
         <Container>
           <Link className="navbar-brand d-flex mx-5" to="/">
             <img width={55} src={logo} alt="" />
             <span className="my-auto">Kandu2.0</span>
           </Link>
-          <Navbar.Toggle aria-controls="navbarSupportedContent" />
-          <Navbar id="navbarSupportedContent">
-            <Nav className="mx-auto mb-2 mb-lg-0">
-              <Nav.Link as={Link} to="/" className="fw-bold h6 mx-2">
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse
+            className=" py-1"
+            style={{ visibility: "visible" }}
+            id="navbarScroll"
+          >
+            <Nav navbarScroll className="mx-auto  mb-2 mb-lg-0">
+              <Nav.Link as={Link} to="/" className="fw-bold text-red h6 mx-2">
                 Home
               </Nav.Link>
               <Nav.Link as={Link} to="/food" className="fw-bold h6 mx-2">
@@ -95,7 +100,7 @@ const NavigationBar = ({ token }) => {
                 </>
               )}
             </div>
-          </Navbar>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
     </>

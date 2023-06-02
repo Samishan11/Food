@@ -1,26 +1,37 @@
-.main{
+.main {
     margin-top: 100px;
     z-index: 1000;
 }
-.nav_bar{
+
+.nav_bar {
     height: 80px;
     transition: .7s;
     z-index: 1000;
 }
-.nav_baralt{
+
+.nav_baralt {
     height: 100px;
     transition: .7s;
     text-shadow: none;
     z-index: 1000;
 }
-.fa-shopping-cart:hover{
+
+.fa-shopping-cart:hover {
     color: #ffc107;
 }
-.cart-count{
+
+.cart-count {
     position: relative;
 }
-.cart-count small{
+
+.cart-count small {
     position: absolute;
     top: -10px;
     right: -10px;
+}
+
+@media screen and (max-width:960px) {
+    #navbarScroll {
+        background-color: rgb(240, 236, 236) !important;
+    }
 }
