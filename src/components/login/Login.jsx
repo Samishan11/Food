@@ -12,10 +12,13 @@ const Login = () => {
   const login = async (e) => {
     e.preventDefault();
     try {
-      const responce = await axios.post("/login", {
-        email,
-        password,
-      });
+      const responce = await axios.post(
+        "https://food-backend-50oj.onrender.com/api/login",
+        {
+          email,
+          password,
+        }
+      );
       if (responce.data.token && responce.data.verified === false) {
         navigation("/otp-verification", { state: { email: email } });
       } else if (responce.data.verified && responce.data.role === 0) {

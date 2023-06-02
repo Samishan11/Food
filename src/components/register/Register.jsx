@@ -12,11 +12,14 @@ const Register = () => {
   const register = async (e) => {
     e.preventDefault();
     try {
-      const responce = await axios.post("/register", {
-        username,
-        email,
-        password,
-      });
+      const responce = await axios.post(
+        "https://food-backend-50oj.onrender.com/api/register",
+        {
+          username,
+          email,
+          password,
+        }
+      );
       // Toast.error('oops!.. something went wrong', {position:Toast.POSITION.TOP_RIGHT})
       console.log(responce.data.success);
       if (responce.data.success === "true") {
